@@ -70,3 +70,16 @@ pnpm build
 
 CI does not need this: the workflow asks `actions/setup-node` for `node-version: 22`, which
 resolves to the latest 22.x on the runner.
+
+## Deployment
+
+`.github/workflows/deploy-site.yml` builds this directory and publishes `website/dist` to
+GitHub Pages. It runs on pushes to `main` that touch `website/**` or the workflow itself,
+and it can be started by hand with `workflow_dispatch`.
+
+The Pages site is a **one-time repository setting**, not something the workflow can create
+for itself: *Settings → Pages → Source: GitHub Actions*. It was enabled on 2026-10-16. If
+that setting is ever turned off, the build fails at `actions/configure-pages` — the fix is
+to turn it back on, not to add `enablement: true` to the workflow, because creating a Pages
+site requires repository admin and the workflow's `GITHUB_TOKEN` never has it. That is
+exactly how the first deployment failed.
