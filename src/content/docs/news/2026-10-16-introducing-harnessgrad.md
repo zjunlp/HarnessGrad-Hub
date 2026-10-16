@@ -3,8 +3,9 @@ title: Introducing HarnessGrad
 date: 2026-10-16
 ---
 
-HarnessGrad is a platform for running and comparing harness self-improvement methods. This
-site is its front page.
+HarnessGrad is the gradient for harness self-improvement: the signal a method needs before it
+can improve anything, built so the number can be checked rather than asserted. This site is
+its front page.
 
 ## What it is for
 
@@ -14,9 +15,10 @@ method's. HarnessGrad defines one: a base harness, a fixed task set, a sampling 
 curve point that records the harness state, the two models involved, the score with an
 interval, and the compute spent.
 
-The repository proposes no RSI method. It builds the instrument that makes such methods
-comparable — and it measures every candidate itself, because a subject that scores itself
-makes the comparison meaningless.
+The repository proposes no RSI method. It ships runnable reference methods, but the
+contribution is the instrument that decides whether any of them worked — and it measures
+every candidate itself, because a subject that scores itself makes the comparison
+meaningless.
 
 ## What runs today
 

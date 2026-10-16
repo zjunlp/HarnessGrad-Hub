@@ -15,7 +15,7 @@ export default defineConfig({
 		starlight({
 			title: 'HarnessGrad',
 			description:
-				'A platform for running and comparing harness self-improvement methods.',
+				'The gradient for harness self-improvement: measurable, attributable, comparable.',
 			favicon: '/favicon.svg',
 			customCss: ['./src/styles/custom.css'],
 			social: [
