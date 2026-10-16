@@ -17,6 +17,7 @@ export default defineConfig({
 			description:
 				'A platform for running and comparing harness self-improvement methods.',
 			favicon: '/favicon.svg',
+			customCss: ['./src/styles/custom.css'],
 			social: [
 				{
 					icon: 'github',

@@ -1,0 +1,343 @@
+/* ==========================================================================
+   HarnessGrad — design system
+
+   DIRECTION. A lab notebook, not a product launch. The platform is a measuring
+   instrument, so the page stays quiet and lets the numbers be the loud thing.
+   The concrete material this is drawn from: warm paper, dark ink, one clay
+   accent, hairline rules, wide margins.
+
+   THE DECISIONS, so they are not re-litigated in every component:
+     Type      a serif for display (editorial), the system sans for everything
+               else. No webfonts loaded: Google Fonts is not reliably reachable
+               from the networks this is read on, and a slow font swap costs
+               more than it buys.
+     Depth     hairlines instead of shadows, and no gradients anywhere. This is
+               the specific anti-pattern that makes generated UI look generated.
+     Colour    ONE accent, on well under 5% of the page. Everything else is the
+               warm neutral scale.
+     Space     the sections breathe; the text measure stays narrow.
+
+   Starlight declares its own tokens inside `@layer starlight.base`. These
+   overrides are deliberately UNLAYERED, because unlayered declarations beat
+   layered ones in the cascade -- so this file wins without needing to chase
+   Starlight's layer name or its selector specificity.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- type --- */
+:root {
+  --hg-font-display: Charter, 'Bitstream Charter', 'Iowan Old Style', Georgia,
+    'Times New Roman', ui-serif, serif;
+  --sl-font: var(--sl-font-system);
+  --sl-font-mono: var(--sl-font-system-mono);
+  --sl-content-width: 46rem;
+  --sl-line-height: 1.7;
+}
+
+/* ------------------------------------------------- warm scale, dark ------ */
+/* Starlight's default ramp is hsl(224, …) -- a cool blue-grey. Warming it is
+   most of what "premium" means here. */
+:root,
+::backdrop {
+  --sl-color-white: #fdfcf9;
+  --sl-color-gray-1: #f2f0e9;
+  --sl-color-gray-2: #a8a49b;
+  --sl-color-gray-3: #837f76;
+  --sl-color-gray-4: #58554f;
+  --sl-color-gray-5: #33312d;
+  --sl-color-gray-6: #1f1e1b;
+  --sl-color-black: #141412;
+
+  --sl-color-accent-low: #3a2419;
+  --sl-color-accent: #c4623d;
+  --sl-color-accent-high: #df8a68;
+
+  --sl-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --sl-shadow-md: 0 6px 18px rgb(0 0 0 / 0.35);
+  --sl-shadow-lg: 0 18px 40px rgb(0 0 0 / 0.45);
+  --sl-color-backdrop-overlay: rgb(20 20 18 / 0.72);
+}
+
+/* ------------------------------------------------- warm scale, light ----- */
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+  --sl-color-white: #17170f;
+  --sl-color-gray-1: #26251f;
+  --sl-color-gray-2: #45433c;
+  --sl-color-gray-3: #6b6862;
+  --sl-color-gray-4: #8e8a82;
+  --sl-color-gray-5: #b5b1a7;
+  --sl-color-gray-6: #e6e3d9;
+  --sl-color-gray-7: #f4f2ea;
+  --sl-color-black: #faf9f5;
+
+  /* #a94e2e on #faf9f5 is 5.2:1 -- AA for body text, not just for large text. */
+  --sl-color-accent-high: #8c3e22;
+  --sl-color-accent: #a94e2e;
+  --sl-color-accent-low: #f0e2da;
+
+  --sl-shadow-sm: 0 1px 2px rgb(23 23 15 / 0.05);
+  --sl-shadow-md: 0 6px 16px rgb(23 23 15 / 0.06);
+  --sl-shadow-lg: 0 18px 36px rgb(23 23 15 / 0.09);
+  --sl-color-backdrop-overlay: rgb(70 68 60 / 0.5);
+}
+
+/* --------------------------------------------------- display headings --- */
+.hero h1,
+.sl-markdown-content h1,
+.sl-markdown-content h2 {
+  font-family: var(--hg-font-display);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+/* ------------------------------------------------------- whitespace ----- */
+.hero {
+  padding-block: 5rem 2.5rem;
+}
+.hero h1 {
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  line-height: 1.05;
+}
+.hero .tagline {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  color: var(--sl-color-gray-2);
+  max-width: 32rem;
+}
+.sl-markdown-content h2 {
+  margin-top: 4.5rem;
+  padding-top: 0;
+}
+.sl-markdown-content > :first-child {
+  margin-top: 0;
+}
+
+/* Landscape phones and up: a little more air on the splash. */
+@media (min-width: 50em) {
+  .hero {
+    padding-block: 7rem 3.5rem;
+  }
+}
+
+/* ==========================================================================
+   Landing-page furniture
+
+   These are the only components the front page has. They exist so the page can
+   be a page rather than a wall of prose: a lede, a rule-separated grid, and one
+   piece of real output.
+   ========================================================================== */
+
+/* One alignment axis for the whole page: everything starts at the same left edge.
+   Starlight's splash hero is left-aligned (`text-align: start`), so centring the
+   prose under it produced four different left edges (180 / 257 / 448 / centred)
+   and read as unresolved rather than as airy. */
+.hg-lede {
+  max-width: 36rem;
+  font-size: var(--sl-text-lg);
+  line-height: 1.6;
+  color: var(--sl-color-gray-2);
+}
+.hg-lede strong {
+  color: var(--sl-color-white);
+}
+
+/* Hairlines are drawn with explicit borders, not with a grid `gap` over a
+   coloured container. The gap version depended on every cell stretching to the
+   row height, and when they did not (measured: tops 888 / 904 / 904) the
+   container colour showed through as a stray band. */
+.hg-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  margin: 3.5rem 0;
+  border: 1px solid var(--sl-color-hairline);
+}
+@media (min-width: 50em) {
+  .hg-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.hg-cell {
+  display: flex;
+  flex-direction: column;
+  background: var(--sl-color-bg);
+  padding: 1.9rem 1.75rem 2.1rem;
+}
+.hg-cell + .hg-cell {
+  border-top: 1px solid var(--sl-color-hairline);
+}
+@media (min-width: 50em) {
+  .hg-cell + .hg-cell {
+    border-top: 0;
+    border-left: 1px solid var(--sl-color-hairline);
+  }
+}
+.hg-cell h3 {
+  margin: 0 0 0.6rem;
+  font-size: var(--sl-text-h4);
+  font-family: var(--sl-font);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--sl-color-white);
+}
+.hg-cell p {
+  margin: 0;
+  font-size: var(--sl-text-sm);
+  line-height: 1.65;
+  color: var(--sl-color-gray-2);
+}
+/* A small index number, so the three read as ordered rather than as a list. */
+.hg-cell .hg-num {
+  display: block;
+  margin-bottom: 1.1rem;
+  font-family: var(--sl-font-mono);
+  font-size: var(--sl-text-xs);
+  letter-spacing: 0.14em;
+  color: var(--sl-color-accent);
+}
+
+/* Starlight's markdown flow spacing gives every sibling after the first a
+   `margin-top` (`--sl-content-gap-y`), and it reaches into our own components.
+   Measured on the grid: cells 2 and 3 carried `margin-top: 16px` while cell 1
+   carried 0, and 16 + 188.25 = 204.25 filled the grid area exactly -- so
+   `align-items: stretch` was working the whole time, and the misalignment was
+   the margin. That margin was also what let the old container colour show
+   through as a band. Reset it inside anything we lay out ourselves. */
+.hg-grid > *,
+.hg-links > *,
+.hg-curve > * {
+  margin-top: 0;
+}
+
+/* The curve rows are the one place a narrow screen genuinely overflows, so the
+   track sizes step down rather than relying on horizontal scroll for the score. */
+.hg-curve-row {
+  grid-template-columns: 5.5rem 4.5rem 1fr;
+  gap: 0.75rem;
+  font-size: var(--sl-text-xs);
+}
+@media (min-width: 50em) {
+  .hg-curve-row {
+    grid-template-columns: 7.5rem 5.5rem 1fr;
+    gap: 1.25rem;
+    font-size: var(--sl-text-sm);
+  }
+}
+
+/* The one detail worth remembering: the platform's actual output, which is a
+   curve. This is the only place the accent is allowed to be loud. */
+.hg-curve {
+  margin: 3.5rem 0 0.75rem;
+  border: 1px solid var(--sl-color-hairline);
+  background: var(--sl-color-bg-nav);
+  padding: 1.6rem 1.75rem;
+  overflow-x: auto;
+}
+.hg-curve-row {
+  display: grid;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  font-family: var(--sl-font-mono);
+  color: var(--sl-color-gray-2);
+  white-space: nowrap;
+}
+.hg-curve-row + .hg-curve-row {
+  border-top: 1px solid var(--sl-color-hairline);
+}
+.hg-curve-row--lift {
+  color: var(--sl-color-white);
+}
+.hg-curve-row--lift .hg-curve-glyph,
+.hg-curve-row--lift .hg-curve-score {
+  color: var(--sl-color-accent);
+}
+.hg-curve-glyph {
+  font-size: 1.05em;
+  letter-spacing: 0.08em;
+}
+.hg-caption {
+  margin: 0 0 3.5rem;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3);
+}
+
+/* Closing links. Same hairline discipline as the grid above, and the same
+   anti-fragile borders. */
+.hg-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  margin-top: 1.5rem;
+  border: 1px solid var(--sl-color-hairline);
+}
+@media (min-width: 50em) {
+  .hg-links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.hg-links a {
+  display: block;
+  background: var(--sl-color-bg);
+  padding: 1.1rem 1.25rem;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-text);
+  text-decoration: none;
+}
+.hg-links a + a {
+  border-top: 1px solid var(--sl-color-hairline);
+}
+@media (min-width: 50em) {
+  .hg-links a + a {
+    border-top: 0;
+    border-left: 1px solid var(--sl-color-hairline);
+  }
+}
+.hg-links a:hover {
+  color: var(--sl-color-accent);
+}
+.hg-links a span {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-xs);
+}
+
+/* ==========================================================================
+   Chrome we do not want
+
+   Expressive Code classifies `bash` as a terminal language and draws a window
+   frame with a title bar. Our blocks have no title, so the bar is an empty strip
+   with three dots -- decoration with no information in it. Hide the bar where
+   there is no title to show; a titled block keeps its header.
+   ========================================================================== */
+.expressive-code .frame.is-terminal:not(.has-title) .header {
+  display: none;
+}
+
+/* Starlight paints the current sidebar entry as a solid accent block: the loudest
+   object on the page, spent on the least important information. A tint plus a
+   left rule says the same thing at a lower volume. The rule is an inset shadow so
+   the item does not shift when it becomes current. */
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+  box-shadow: inset 2px 0 0 var(--sl-color-accent);
+}
+
+/* The blog plugin's header entry point is a filled accent pill by default. Same
+   reasoning: keep it findable, drop it to a hairline. */
+.sl-blog-header-link {
+  background: transparent;
+  color: var(--sl-color-text);
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 999px;
+  padding: 0.1rem 0.7rem;
+  font-size: var(--sl-text-xs);
+  text-decoration: none;
+}
+.sl-blog-header-link:hover {
+  border-color: var(--sl-color-accent);
+  color: var(--sl-color-accent);
+}
+
+

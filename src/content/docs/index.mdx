@@ -14,47 +14,55 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+<p class="hg-lede">
+  Every harness-evolution method reports a score delta. None can say what it is
+  <strong>made of</strong>. HarnessGrad measures every candidate itself — same tasks, same
+  scorer — so their curves land on one axis.
+</p>
 
-## A missing training signal
+<div class="hg-curve">
+  <div class="hg-curve-row">
+    <span class="hg-curve-name">control</span>
+    <span class="hg-curve-glyph">▁▁</span>
+    <span class="hg-curve-score">0.00</span>
+  </div>
+  <div class="hg-curve-row hg-curve-row--lift">
+    <span class="hg-curve-name">treat-A</span>
+    <span class="hg-curve-glyph">▁██</span>
+    <span class="hg-curve-score">0.00 → 1.00</span>
+  </div>
+</div>
 
-Every harness-evolution method reports a final score delta. None of them can say what that
-delta is *made of*, and none report it on a curve a reader can compare against another
-method's. The field has no shared training signal.
+<p class="hg-caption">The local demo, end to end. 4 tasks, no network, no cost.</p>
 
-HarnessGrad defines one: **a base harness, a fixed task set, a sampling loop, and a curve
-point** that records the harness state, the two models involved, the score with an
-interval, and the compute spent to get there.
+<div class="hg-grid">
+  <div class="hg-cell">
+    <span class="hg-num">01</span>
+    <h3>Scoring is not delegable</h3>
+    <p>A subject that scores itself makes every comparison meaningless.</p>
+  </div>
+  <div class="hg-cell">
+    <span class="hg-num">02</span>
+    <h3>Methods live outside</h3>
+    <p>A method returns candidate harnesses. The platform measures those.</p>
+  </div>
+  <div class="hg-cell">
+    <span class="hg-num">03</span>
+    <h3>Isolation is recorded</h3>
+    <p>Runs made under different rules never share an axis.</p>
+  </div>
+</div>
 
-This project does not propose an RSI method. It builds the instrument that makes RSI
-methods comparable — so it is not competing with the methods it measures.
+```bash
+./install.sh --check        # verify the host; changes nothing
 
-<CardGrid stagger>
-	<Card title="Scoring is not delegable" icon="approve-check">
-		A subject that scores itself makes every cross-method comparison meaningless. The
-		platform owns every score and every curve point.
-	</Card>
-	<Card title="Methods live outside" icon="puzzle">
-		A method is handed a pristine copy of a base harness and returns candidates. The
-		platform then measures those candidates itself, on its own tasks, with its own
-		scorer.
-	</Card>
-	<Card title="One axis for every method" icon="bars">
-		Platform-driven and method-driven execution both write the same `curve.jsonl`, so
-		curves from either land on a single axis.
-	</Card>
-	<Card title="Instrumented, not proposed" icon="setting">
-		The repository ships the loop, the checkpoints and the cost accounting — and the
-		explicit limits of what a local result can claim.
-	</Card>
-</CardGrid>
+export HG_AGENT_BACKEND=mock
+python3 driver.py --dataset demo --sampling all --harness loop --rounds 2 \
+    --run-id control --method-entrypoint "python $PWD/methods/noop/run.py"
+```
 
-## Where to go next
-
-- **[Getting started](/HarnessGrad/getting-started/)** — install, then run the local demo end to end.
-- **[Status and limits](/HarnessGrad/status/)** — what has been decided, what has not, and what a
-  local number may not be used to claim.
-- **[Concepts](/HarnessGrad/concepts/why-scoring-is-not-delegable/)** — why the platform is shaped
-  this way.
-- **[`INTERFACE.md`](https://github.com/zjunlp/HarnessGrad/blob/main/INTERFACE.md)** —
-  the measurement contract: what a harness may declare, and what the platform guarantees.
+<div class="hg-links">
+  <a href="/HarnessGrad/getting-started/">Get started<span>install, then the demo</span></a>
+  <a href="/HarnessGrad/concepts/why-scoring-is-not-delegable/">Concepts<span>why it is shaped this way</span></a>
+  <a href="/HarnessGrad/status/">Status and limits<span>read before quoting a number</span></a>
+</div>
