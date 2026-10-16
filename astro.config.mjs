@@ -17,6 +17,7 @@ export default defineConfig({
 			description:
 				'The gradient for harness self-improvement: measurable, attributable, comparable.',
 			favicon: '/favicon.svg',
+			logo: { src: './src/assets/mark.svg', alt: '' },
 			customCss: ['./src/styles/custom.css'],
 			social: [
 				{

@@ -1,15 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- The mark is the platform's own output: the curve glyph ▁██ from a run. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- The mark is the platform's own output: a curve, read as a run's rounds. The last
+       mark is the newest round, in the accent. Accelerating heights, because a flat
+       bar chart says "counts" and this says "a curve" -- and four marks survive 16px,
+       while a thin stroke or an accent that overlaps the ink does not. -->
   <style>
     .bg { fill: #faf9f5; }
-    .bar { fill: #a94e2e; }
+    .bar { fill: #1a1a17; }
+    .last { fill: #a94e2e; }
     @media (prefers-color-scheme: dark) {
       .bg { fill: #141412; }
-      .bar { fill: #df8a68; }
+      .bar { fill: #f2f0e9; }
+      .last { fill: #df8a68; }
     }
   </style>
-  <rect class="bg" width="32" height="32" rx="7" />
-  <rect class="bar" x="7" y="22" width="4.5" height="4" rx="1" />
-  <rect class="bar" x="13.75" y="8" width="4.5" height="18" rx="1" />
-  <rect class="bar" x="20.5" y="8" width="4.5" height="18" rx="1" />
+  <rect class="bg" width="64" height="64" rx="14" />
+  <rect class="bar"  x="8"    y="48" width="9.5" height="8"  rx="2.5" />
+  <rect class="bar"  x="20.5" y="42" width="9.5" height="14" rx="2.5" />
+  <rect class="bar"  x="33"   y="31" width="9.5" height="25" rx="2.5" />
+  <rect class="last" x="45.5" y="12" width="9.5" height="44" rx="2.5" />
 </svg>
