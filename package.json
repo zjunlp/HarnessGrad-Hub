@@ -1,0 +1,21 @@
+{
+  "name": "harnessgrad-website",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HarnessGrad public site: platform introduction, news and blog.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build && node scripts/check-links.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.6",
+    "astro": "^7.2.10",
+    "sharp": "^0.35.3",
+    "starlight-blog": "^0.30.2"
+  }
+}

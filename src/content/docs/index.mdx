@@ -1,0 +1,60 @@
+---
+title: HarnessGrad
+description: A platform for running and comparing harness self-improvement methods.
+template: splash
+hero:
+  tagline: A platform for running and comparing harness self-improvement methods.
+  actions:
+    - text: Get started
+      link: /HarnessGrad/getting-started/
+      icon: right-arrow
+    - text: GitHub
+      link: https://github.com/zjunlp/HarnessGrad
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## A missing training signal
+
+Every harness-evolution method reports a final score delta. None of them can say what that
+delta is *made of*, and none report it on a curve a reader can compare against another
+method's. The field has no shared training signal.
+
+HarnessGrad defines one: **a base harness, a fixed task set, a sampling loop, and a curve
+point** that records the harness state, the two models involved, the score with an
+interval, and the compute spent to get there.
+
+This project does not propose an RSI method. It builds the instrument that makes RSI
+methods comparable — so it is not competing with the methods it measures.
+
+<CardGrid stagger>
+	<Card title="Scoring is not delegable" icon="approve-check">
+		A subject that scores itself makes every cross-method comparison meaningless. The
+		platform owns every score and every curve point.
+	</Card>
+	<Card title="Methods live outside" icon="puzzle">
+		A method is handed a pristine copy of a base harness and returns candidates. The
+		platform then measures those candidates itself, on its own tasks, with its own
+		scorer.
+	</Card>
+	<Card title="One axis for every method" icon="bars">
+		Platform-driven and method-driven execution both write the same `curve.jsonl`, so
+		curves from either land on a single axis.
+	</Card>
+	<Card title="Instrumented, not proposed" icon="setting">
+		The repository ships the loop, the checkpoints and the cost accounting — and the
+		explicit limits of what a local result can claim.
+	</Card>
+</CardGrid>
+
+## Where to go next
+
+- **[Getting started](/HarnessGrad/getting-started/)** — install, then run the local demo end to end.
+- **[Status and limits](/HarnessGrad/status/)** — what has been decided, what has not, and what a
+  local number may not be used to claim.
+- **[Concepts](/HarnessGrad/concepts/why-scoring-is-not-delegable/)** — why the platform is shaped
+  this way.
+- **[`INTERFACE.md`](https://github.com/zjunlp/HarnessGrad/blob/main/INTERFACE.md)** —
+  the measurement contract: what a harness may declare, and what the platform guarantees.
