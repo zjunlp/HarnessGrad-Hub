@@ -20,12 +20,32 @@ pnpm preview    # serve the built output
 
 | Path | What it is |
 | --- | --- |
-| `astro.config.mjs` | `site`/`base`, the sidebar, and the two blog instances |
+| `astro.config.mjs` | `site`/`base`, the sidebar, the two blog instances, and `customCss` |
 | `src/content.config.ts` | the docs collection, extended with the blog frontmatter schema |
 | `src/content/docs/` | every page; one file is one route |
 | `src/content/docs/news/` | the News instance; posts are Markdown files |
 | `src/content/docs/blog/` | the Blog instance; posts are Markdown files |
 | `public/` | static assets served from the site root |
+| `src/styles/custom.css` | the design system: palette, type, spacing, and the front page's own components |
+
+## The design is a decision, not a default
+
+`src/styles/custom.css` starts with the direction and the decisions behind it, so they are
+not re-litigated per component. In short: warm paper and dark ink instead of Starlight's
+cool `hsl(224, …)` ramp, one clay accent (`#a94e2e` in light, `#df8a68` in dark), a serif
+for display, hairlines instead of shadows, no gradients, and no webfonts.
+
+The palette was not invented. It was read out of the reference sites' own CSS:
+`anthropic.com` names its tokens `--swatch--ivory-light` / `--swatch--slate-dark` and uses
+`#faf9f0` with clay `#cc785c`; `apple.com` runs `#1d1d1f` / `#f5f5f7` with a single accent
+and one typeface. (`openai.com` answers 403 to non-browser clients.)
+
+**Check it by looking, not by reading the CSS.** The built site is screenshotted at 1440
+and 390 px in both colour schemes, and the layout assertions are read back from computed
+styles — the front page's left edges, the grid cells' tops and heights, and horizontal
+overflow. Two real defects survived code review and only showed up this way: four different
+left edges, and a grid whose cells carried a 16 px `margin-top` from Starlight's markdown
+flow spacing (so `align-items: stretch` was working, and the obvious diagnosis was wrong).
 
 ## Two sections come from one plugin
 
