@@ -10,6 +10,11 @@
  * dataset it points at is worse than no link. (3) *Links both ways*: this line points at the
  * dataset, and the dataset card points back at this page, so neither is a dead end.
  *
+ * **Why the link goes to a subtree and not to the repo root.** The repo is one dataset for every
+ * benchmark; a page about ALFWorld that lands a reader at a list of datasets makes them search
+ * for the benchmark they were already reading about. The link names this benchmark's directory,
+ * and the row-level links (`BenchmarkFilter`/score table) name one method's directory inside it.
+ *
  * **Where the link belongs.** Directly under the page title, once. Not in a table (it is not a
  * property of a row), not in the sidebar (it is a property of this benchmark, not of the site).
  * When `status` is not `published` the component renders nothing: an unpublished repo must not
@@ -25,9 +30,22 @@ const files = import.meta.glob<{ default: Record<string, unknown> }>("../data/hu
 });
 const hub = (Object.values(files)[0]?.default ?? {}) as Record<string, unknown>;
 const entry = hub[slug] as
-  | { dataset?: string; status?: string; splits?: Record<string, string> }
+  | {
+      dataset?: string;
+      status?: string;
+      root?: string;
+      baseline?: { dir?: string; pools?: string[] };
+      splits?: Record<string, string>;
+    }
   | undefined;
 const published = entry?.status === "published" && entry?.dataset;
+const base = published ? `https://huggingface.co/datasets/${entry.dataset}` : "";
+const tree = (path?: string) => (path ? `${base}/tree/main/${path}` : base);
+const root = entry?.root ?? "";
+const baselinePath = entry?.baseline?.dir
+  ? [root, entry.baseline.dir].filter(Boolean).join("/")
+  : "";
+const baselinePublished = Boolean(entry?.baseline?.pools?.length);
 const splits = entry?.splits ?? {};
 const mapped = Object.entries(splits).filter(([ours, theirs]) => ours !== theirs);
 ---
@@ -35,9 +53,18 @@ const mapped = Object.entries(splits).filter(([ours, theirs]) => ours !== theirs
 {published && (
   <p class="hg-hub">
     <span class="hg-hub-key">data</span>
-    <a href={`https://huggingface.co/datasets/${entry.dataset}`}>
+    <a href={tree(root)}>
       huggingface.co/datasets/{entry.dataset}
+      {root && <>/{entry.baseline ? "tree/main/" : ""}{root}</>}
     </a>
+    {baselinePublished && (
+      <span class="hg-hub-note">
+        · baseline{" "}
+        <a href={tree(baselinePath)}>
+          <code>{entry.baseline?.dir}</code>
+        </a>
+      </span>
+    )}
     {mapped.length > 0 && (
       <span class="hg-hub-note">
         · split mapping:{" "}
