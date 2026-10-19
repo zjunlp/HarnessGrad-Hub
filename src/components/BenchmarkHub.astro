@@ -1,0 +1,75 @@
+---
+/**
+ * The link from a page to the same object on the Hub, plus the split mapping that makes the
+ * two line up.
+ *
+ * **Three levels of "corresponding", cheapest first.** (1) *Names*: the dataset slug here is the
+ * repo name there, and the split names are identical, so a reader can move between the two
+ * without a translation table. (2) *Content*: one row here is one row in the Hub dataset, and a
+ * split's task count is the same number in both places — a page whose counts disagree with the
+ * dataset it points at is worse than no link. (3) *Links both ways*: this line points at the
+ * dataset, and the dataset card points back at this page, so neither is a dead end.
+ *
+ * **Where the link belongs.** Directly under the page title, once. Not in a table (it is not a
+ * property of a row), not in the sidebar (it is a property of this benchmark, not of the site).
+ * When `status` is not `published` the component renders nothing: an unpublished repo must not
+ * appear as a link that 404s.
+ */
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const files = import.meta.glob<{ default: Record<string, unknown> }>("../data/hub.json", {
+  eager: true,
+});
+const hub = (Object.values(files)[0]?.default ?? {}) as Record<string, unknown>;
+const entry = hub[slug] as
+  | { dataset?: string; status?: string; splits?: Record<string, string> }
+  | undefined;
+const published = entry?.status === "published" && entry?.dataset;
+const splits = entry?.splits ?? {};
+const mapped = Object.entries(splits).filter(([ours, theirs]) => ours !== theirs);
+---
+
+{published && (
+  <p class="hg-hub">
+    <span class="hg-hub-key">data</span>
+    <a href={`https://huggingface.co/datasets/${entry.dataset}`}>
+      huggingface.co/datasets/{entry.dataset}
+    </a>
+    {mapped.length > 0 && (
+      <span class="hg-hub-note">
+        · split mapping:{" "}
+        {mapped.map(([ours, theirs]) => (
+          <>
+            <code>{ours}</code>→<code>{theirs}</code>{" "}
+          </>
+        ))}
+      </span>
+    )}
+  </p>
+)}
+
+<style is:global>
+  .hg-hub {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin: 0.2rem 0 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border-left: 3px solid var(--sl-color-gray-5);
+    font-size: 0.8rem;
+  }
+  .hg-hub-key {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sl-color-gray-3);
+  }
+  .hg-hub-note {
+    font-size: 0.72rem;
+    color: var(--sl-color-gray-3);
+  }
+</style>
