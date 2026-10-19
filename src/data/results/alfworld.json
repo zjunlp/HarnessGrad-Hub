@@ -1,6 +1,6 @@
 {
  "slug": "alfworld",
- "generated_at": "2026-10-19T02:44:59Z",
+ "generated_at": "2026-10-19T04:25:45Z",
  "stamp": "20261017T123952Z",
  "study": {
   "pool": "train100",
@@ -1711,17 +1711,21 @@
        "train": 1.0,
        "train_n": 100,
        "eval": {
-        "valid_unseen": 1.0
+        "valid_unseen": 1.0,
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
-        "valid_unseen": 0
+        "valid_unseen": 0,
+        "valid_seen": 0,
+        "valid_train": 0
        },
        "eval_source": {
         "valid_unseen": "exam"
        },
-       "eval_n": 134
+       "eval_n": 200
       },
       {
        "round": 7,
@@ -1941,17 +1945,21 @@
        "train": 0.7,
        "train_n": 100,
        "eval": {
-        "valid_unseen": 0.544776
+        "valid_unseen": 0.544776,
+        "valid_seen": 0.578571,
+        "valid_train": 0.635
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
-        "valid_unseen": 28985866
+        "valid_unseen": 28985866,
+        "valid_seen": 33411498,
+        "valid_train": 43895750
        },
        "eval_source": {
         "valid_unseen": "exam"
        },
-       "eval_n": 134
+       "eval_n": 200
       },
       {
        "round": 9,
@@ -2106,13 +2114,13 @@
    "planned": null
   },
   "valid_seen": {
-   "measured": 41,
-   "valid": 41,
+   "measured": 43,
+   "valid": 43,
    "planned": null
   },
   "valid_train": {
-   "measured": 41,
-   "valid": 41,
+   "measured": 43,
+   "valid": 43,
    "planned": null
   }
  }
