@@ -1,6 +1,6 @@
 {
  "slug": "alfworld",
- "generated_at": "2026-10-18T16:06:49Z",
+ "generated_at": "2026-10-19T02:13:20Z",
  "stamp": "20261017T123952Z",
  "study": {
   "pool": "train100",
@@ -105,15 +105,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 0,
-        "valid_seen": 0
+        "valid_seen": 0,
+        "valid_train": 0
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 5,
@@ -121,15 +123,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 0,
-        "valid_seen": 0
+        "valid_seen": 0,
+        "valid_train": 0
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 6,
@@ -137,15 +141,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 0,
-        "valid_seen": 0
+        "valid_seen": 0,
+        "valid_train": 0
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 7,
@@ -153,15 +159,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 0,
-        "valid_seen": 0
+        "valid_seen": 0,
+        "valid_train": 0
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 8,
@@ -169,15 +177,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 0,
-        "valid_seen": 0
+        "valid_seen": 0,
+        "valid_train": 0
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 9,
@@ -185,32 +195,38 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 0,
-        "valid_seen": 0
+        "valid_seen": 0,
+        "valid_train": 0
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 10,
        "train": 1.0,
        "train_n": 100,
        "eval": {
-        "valid_unseen": 1.0
+        "valid_unseen": 1.0,
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
-        "valid_unseen": 0
+        "valid_unseen": 0,
+        "valid_seen": 0,
+        "valid_train": 0
        },
        "eval_source": {
         "valid_unseen": "exam"
        },
-       "eval_n": 134
+       "eval_n": 200
       }
      ],
      "cost": {
@@ -465,19 +481,21 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 4234050,
-        "valid_seen": 3352161
+        "valid_seen": 3352161,
+        "valid_train": 6290427
        },
        "eval_source": {
         "valid_unseen": "exam",
         "valid_seen": "exam"
        },
-       "eval_n": 140
+       "eval_n": 200
       }
      ],
      "cost": {
@@ -592,15 +610,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.962687,
-        "valid_seen": 0.928571
+        "valid_seen": 0.928571,
+        "valid_train": 0.96
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 10159770,
-        "valid_seen": 13436258
+        "valid_seen": 13436258,
+        "valid_train": 17635361
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 4,
@@ -608,32 +628,38 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.977612,
-        "valid_seen": 0.957143
+        "valid_seen": 0.957143,
+        "valid_train": 0.93
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 13154761,
-        "valid_seen": 15021591
+        "valid_seen": 15021591,
+        "valid_train": 22363163
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 5,
        "train": 0.95,
        "train_n": 100,
        "eval": {
-        "valid_unseen": 0.985075
+        "valid_unseen": 0.985075,
+        "valid_seen": 0.971429,
+        "valid_train": 0.95
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
-        "valid_unseen": 2271914
+        "valid_unseen": 2271914,
+        "valid_seen": 1757681,
+        "valid_train": 5947725
        },
        "eval_source": {
         "valid_unseen": "exam"
        },
-       "eval_n": 134
+       "eval_n": 200
       }
      ],
      "cost": {
@@ -790,15 +816,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.970149,
-        "valid_seen": 0.971429
+        "valid_seen": 0.971429,
+        "valid_train": 0.955
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 11268423,
-        "valid_seen": 13509095
+        "valid_seen": 13509095,
+        "valid_train": 19366025
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 5,
@@ -806,15 +834,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.970149,
-        "valid_seen": 0.971429
+        "valid_seen": 0.971429,
+        "valid_train": 0.965
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 11742125,
-        "valid_seen": 13097522
+        "valid_seen": 13097522,
+        "valid_train": 19317816
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 6,
@@ -822,15 +852,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 4156103,
-        "valid_seen": 3428774
+        "valid_seen": 3428774,
+        "valid_train": 6489803
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 7,
@@ -838,15 +870,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 4021129,
-        "valid_seen": 3353710
+        "valid_seen": 3353710,
+        "valid_train": 6642268
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 8,
@@ -854,15 +888,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 3850639,
-        "valid_seen": 3258567
+        "valid_seen": 3258567,
+        "valid_train": 6157704
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 9,
@@ -870,32 +906,38 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 3844720,
-        "valid_seen": 3224878
+        "valid_seen": 3224878,
+        "valid_train": 6092951
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 10,
        "train": 1.0,
        "train_n": 100,
        "eval": {
-        "valid_unseen": 1.0
+        "valid_unseen": 1.0,
+        "valid_seen": 1.0,
+        "valid_train": 1.0
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
-        "valid_unseen": 3824487
+        "valid_unseen": 3824487,
+        "valid_seen": 3266244,
+        "valid_train": 6141211
        },
        "eval_source": {
         "valid_unseen": "exam"
        },
-       "eval_n": 134
+       "eval_n": 200
       }
      ],
      "cost": {
@@ -1150,19 +1192,21 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 1.0,
-        "valid_seen": 1.0
+        "valid_seen": 1.0,
+        "valid_train": 0.995
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 224907,
-        "valid_seen": 383990
+        "valid_seen": 383990,
+        "valid_train": 103205
        },
        "eval_source": {
         "valid_unseen": "exam",
         "valid_seen": "exam"
        },
-       "eval_n": 140
+       "eval_n": 200
       }
      ],
      "cost": {
@@ -1288,15 +1332,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.58209,
-        "valid_seen": 0.671429
+        "valid_seen": 0.671429,
+        "valid_train": 0.63
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 13834585,
-        "valid_seen": 18940070
+        "valid_seen": 18940070,
+        "valid_train": 24647454
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 5,
@@ -1304,15 +1350,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.679104,
-        "valid_seen": 0.707143
+        "valid_seen": 0.707143,
+        "valid_train": 0.645
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 18247543,
-        "valid_seen": 22666613
+        "valid_seen": 22666613,
+        "valid_train": 32038450
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 6,
@@ -1320,15 +1368,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.716418,
-        "valid_seen": 0.7
+        "valid_seen": 0.7,
+        "valid_train": 0.68
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 18044392,
-        "valid_seen": 22501674
+        "valid_seen": 22501674,
+        "valid_train": 30890812
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 7,
@@ -1336,15 +1386,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.865672,
-        "valid_seen": 0.821429
+        "valid_seen": 0.821429,
+        "valid_train": 0.755
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 19949554,
-        "valid_seen": 22879433
+        "valid_seen": 22879433,
+        "valid_train": 33816035
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 8,
@@ -1352,15 +1404,17 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.776119,
-        "valid_seen": 0.8
+        "valid_seen": 0.8,
+        "valid_train": 0.735
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 27976761,
-        "valid_seen": 25844847
+        "valid_seen": 25844847,
+        "valid_train": 40150185
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 9,
@@ -1368,32 +1422,38 @@
        "train_n": 100,
        "eval": {
         "valid_unseen": 0.910448,
-        "valid_seen": 0.871429
+        "valid_seen": 0.871429,
+        "valid_train": 0.81
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
         "valid_unseen": 19330567,
-        "valid_seen": 21598512
+        "valid_seen": 21598512,
+        "valid_train": 31045308
        },
-       "eval_n": 140
+       "eval_n": 200
       },
       {
        "round": 10,
        "train": 0.93,
        "train_n": 100,
        "eval": {
-        "valid_unseen": 0.932836
+        "valid_unseen": 0.932836,
+        "valid_seen": 0.914286,
+        "valid_train": 0.89
        },
        "valid": true,
        "n_invalid": 0,
        "eval_tokens": {
-        "valid_unseen": 16411022
+        "valid_unseen": 16411022,
+        "valid_seen": 18239687,
+        "valid_train": 26711086
        },
        "eval_source": {
         "valid_unseen": "exam"
        },
-       "eval_n": 134
+       "eval_n": 200
       }
      ],
      "cost": {
@@ -2046,13 +2106,13 @@
    "planned": null
   },
   "valid_seen": {
-   "measured": 37,
-   "valid": 37,
+   "measured": 41,
+   "valid": 41,
    "planned": null
   },
   "valid_train": {
-   "measured": 15,
-   "valid": 15,
+   "measured": 41,
+   "valid": 41,
    "planned": null
   }
  }
