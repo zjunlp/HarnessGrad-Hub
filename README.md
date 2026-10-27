@@ -1,17 +1,20 @@
-# HarnessGrad website
+# HarnessGrad-Hub
 
-The public introduction site: what the platform is, what it is not, plus the News and Blog
-sections. Built with [Astro](https://astro.build) and
-[Starlight](https://starlight.astro.build), deployed to GitHub Pages.
+The public site of HarnessGrad: what the platform is, the results it measured (benchmark and
+method pages), and the News and Blog sections. Built with [Astro](https://astro.build) and
+[Starlight](https://starlight.astro.build), deployed to GitHub Pages at
+<https://zjunlp.github.io/HarnessGrad-Hub/>.
 
-This is **not** the experiment-running UI. That is [`../web/`](../web) — a separate Vite
-app for comparing and debugging runs. This directory only presents the platform.
+**This repository is only the site.** The platform that runs experiments, measures scores and
+holds the adapters is [`zjunlp/HarnessGrad`](https://github.com/zjunlp/HarnessGrad); nothing
+here can start a run or change a measurement. The benchmark and method pages are *generated*
+from run records, never written by hand.
 
 ## Commands
 
 ```bash
 pnpm install
-pnpm dev        # http://localhost:4321/HarnessGrad/
+pnpm dev        # http://localhost:4321/HarnessGrad-Hub/
 pnpm build      # static output in ./dist
 pnpm preview    # serve the built output
 ```
@@ -58,10 +61,10 @@ frontmatter; nothing else is registered by hand.
 ## The base path is not optional, and Astro will not do it for you
 
 The site is served as a GitHub Pages *project* page, at
-`https://zjunlp.github.io/HarnessGrad/`, so `base: '/HarnessGrad'` in `astro.config.mjs`
+`https://zjunlp.github.io/HarnessGrad-Hub/`, so `base: '/HarnessGrad-Hub'` in `astro.config.mjs`
 is load-bearing. It is what makes the canonical URLs, the RSS feeds, the asset paths and
 the sidebar links correct. In development the site is also served under that prefix —
-`localhost:4321/HarnessGrad/`, not `localhost:4321/`.
+`localhost:4321/HarnessGrad-Hub/`, not `localhost:4321/`.
 
 **The trap:** Astro applies `base` to the routes it *generates*, but **not** to
 root-absolute links you write by hand. `[text](/getting-started/)` in Markdown stays
@@ -69,7 +72,7 @@ root-absolute links you write by hand. `[text](/getting-started/)` in Markdown s
 `zjunlp.github.io/getting-started/` instead of the project. It renders perfectly in
 `pnpm dev`, so nothing catches it until a reader clicks.
 
-So hand-written internal links must include the base — `](/HarnessGrad/getting-started/)` —
+So hand-written internal links must include the base — `](/HarnessGrad-Hub/getting-started/)` —
 and `pnpm build` ends by running `scripts/check-links.mjs`, which walks the built HTML and
 fails on any root-absolute URL that is not under the base or does not resolve to a file.
 It reads the base back out of the built canonical URL, so it follows a changed `base`
